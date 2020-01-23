@@ -10,11 +10,19 @@ variable "cidr" {
 }
 
 variable "public_subnets" {
-  default = ["172.21.0.0/21", "172.21.8.0/21", "172.21.16.0/21"]
+  default = ["172.21.0.0/24", "172.21.1.0/24", "172.21.2.0/24"]
 }
 
-variable "private_ips" {
-    default = ["172.21.0.100", "172.21.8.100", "172.21.16.100"]
+variable "private_subnets" {
+  default = ["172.21.8.0/21", "172.21.16.0/21", "172.21.24.0/21"]
+}
+
+variable "private_ips_public" {
+    default = ["172.21.0.100", "172.21.1.100", "172.21.2.100"]
+}
+
+variable "private_ips_private" {
+    default = ["172.21.8.100", "172.21.16.100", "172.21.24.100"]
 }
 
 variable "vpc_name" {
@@ -30,7 +38,8 @@ variable "ami" {
 }
 
 variable "instance_type" {
-    default = "t3a.large"
+    description = "Instance type is a list of types, public then private"
+    default = ["t3a.micro", "t3a.large"]
 }
 
 variable "cluster_name" {
