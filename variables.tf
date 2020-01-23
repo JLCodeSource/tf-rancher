@@ -13,8 +13,24 @@ variable "public_subnets" {
   default = ["172.21.0.0/21", "172.21.8.0/21", "172.21.16.0/21"]
 }
 
+variable "private_ips" {
+    default = ["172.21.0.100", "172.21.8.100", "172.21.16.100"]
+}
+
 variable "vpc_name" {
   default = "tf-rancher"
+}
+
+variable "key_name" {
+    default = "terraform-key"
+}
+
+variable "ami" {
+    default  = "ami-06d51e91cea0dac8d"
+}
+
+variable "instance_type" {
+    default = "t3a.large"
 }
 
 variable "cluster_name" {
