@@ -5,6 +5,10 @@ variable "region" {
 data "aws_availability_zones" "available" {
 }
 
+variable "mgmt-ip" {
+  default = "95.147.105.79/32"
+}
+
 variable "cidr" {
     default = "172.21.0.0/19"
 }

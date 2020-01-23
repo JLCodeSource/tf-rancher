@@ -6,7 +6,7 @@ resource "aws_instance" "rancher_public" {
     subnet_id = module.vpc.public_subnets[count.index]
     availability_zone = data.aws_availability_zones.available.names[count.index]
     private_ip = var.private_ips_public[count.index]
-    #vpc_security_group_ids = [""]
+    vpc_security_group_ids = ["${module.ssh_sg.this_security_group_id}"]
     key_name = var.key_name
     
     tags = {
