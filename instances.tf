@@ -10,7 +10,7 @@ resource "aws_instance" "rancher_public" {
     key_name = var.key_name
     
     tags = {
-        Name = "rancher-public-${count.index}"
+        Name = "rancher-bastion-public-${count.index}"
     }
 }
 
