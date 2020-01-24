@@ -1,0 +1,32 @@
+nodes:
+  - address: 172.21.8.100
+    internal_address: 172.21.8.100
+    user: ubuntu
+    role: [controlplane, worker, etcd]
+    ssh_key_path: /home/ubuntu/.ssh/id_rsa
+  - address: 172.21.16.100
+    internal_address: 172.21.16.100
+    user: ubuntu
+    role: [controlplane, worker, etcd]
+    ssh_key_path: /home/ubuntu/.ssh/id_rsa
+  - address: 172.21.24.100
+    internal_address: 172.21.24.100
+    user: ubuntu
+    role: [controlplane, worker, etcd]
+    ssh_key_path: /home/ubuntu/.ssh/id_rsa
+
+cluster_name: tf-rancher
+prefix_path: /opt/rke
+
+services:
+  etcd:
+    snapshot: true
+    creation: 6h
+    retention: 24h
+
+# # Required for external TLS termination with
+# # ingress-nginx v0.22+
+# ingress:
+#   provider: nginx
+#   options:
+#     use-forwarded-headers: "true" 
