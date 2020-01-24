@@ -33,3 +33,11 @@ resource "aws_instance" "rancher_private" {
         Name = "rancher-private-${count.index}"
     }
 }
+
+output "rancher-public-instance-ids" {
+    value = aws_instance.rancher_public.*.id
+}
+
+output "rancher-private-instance-ids" {
+    value = aws_instance.rancher_private.*.id
+}

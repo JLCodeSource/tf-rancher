@@ -1,5 +1,29 @@
+
+resource "aws_default_security_group" "default" {
+  vpc_id = module.vpc.vpc_id
+
+  ingress {
+    protocol  = -1
+    self      = true
+    from_port = 0
+    to_port   = 0
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+      name = "default rancher sg"
+  }
+}
+ 
 module "internal_private_sg" {
-    source = "../terraform-aws-modules/terraform-aws-security-group"
+  source  = "terraform-aws-modules/security-group/aws"
+  version = "3.4.0"
 
     name = "internal_private_sg"
     description = "Security group for internal traffic from public to private"
@@ -12,7 +36,8 @@ module "internal_private_sg" {
 }
 
 module "outbound_internet_sg" {
-    source = "../terraform-aws-modules/terraform-aws-security-group"
+  source  = "terraform-aws-modules/security-group/aws"
+  version = "3.4.0"
 
     name = "outbound_internet_sg"
     description = "Security group for external traffic"
@@ -23,7 +48,8 @@ module "outbound_internet_sg" {
 }
 
 module "ssh_sg" {
-    source = "../terraform-aws-modules/terraform-aws-security-group"
+    source  = "terraform-aws-modules/security-group/aws"
+    version = "3.4.0"
 
     name = "ssh_sg"
     description = "Security group for ssh into public subnet"
