@@ -59,4 +59,15 @@ module "ssh_sg" {
     ingress_rules = ["ssh-tcp"]
 }
 
+module "inbound_https_sg" {
+    source  = "terraform-aws-modules/security-group/aws"
+    version = "3.4.0"
 
+    name = "https_sg"
+    description = "Security group for https into private subnet"
+    vpc_id = module.vpc.vpc_id
+
+    ingress_cidr_blocks = ["0.0.0.0/0"]
+    ingress_rules = ["https-443-tcp"]
+
+}

@@ -29,6 +29,7 @@ resource "aws_instance" "rancher_private" {
     vpc_security_group_ids = [
         "${module.internal_private_sg.this_security_group_id}",
         "${module.outbound_internet_sg.this_security_group_id}",
+        "${module.inbound_https_sg.this_security_group_id}",
     ]
 
     key_name = var.key_name
