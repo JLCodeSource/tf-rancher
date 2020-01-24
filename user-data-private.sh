@@ -1,20 +1,21 @@
-#! /bin/bash
+#!/bin/bash
 
 # Update
 # NB - needed to handle grub issue
 sudo apt-get update
-sudo apt-get -y upgrade
+sudo DEBIAN_FRONTEND=noninteractive apt-get -y --force-yes upgrade
 
 # Install tools
-sudo apt-get -y install docker.io jq
+sudo apt-get -y --force-yes install docker.io jq ntp
 
 # Download rke K8s installer
-curl -s https://api.github.com/repos/rancher/rke/releases/latest | jq -r ".assets[] | select(.name | test(\"rke_linux-amd64\")) | .browser_download_url"
-curl -L $(cat latest.txt) --output rke_linux-amd 
+
+curl -L $(curl -s https://api.github.com/repos/rancher/rke/releases/latest | jq -r ".assets[] | select(.name | test(\"rke_linux-amd64\")) | .browser_download_url") --output rke_linux-amd 
 
 # Install rke K8s installer
 sudo chmod 755 rke_linux-amd
 sudo chown root:root rke_linux-amd
 sudo mv rke_linux-amd /usr/local/bin/rke
 
-
+# Restart ready for install
+sudo reboot
