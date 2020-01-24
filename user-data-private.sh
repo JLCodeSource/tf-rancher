@@ -14,7 +14,9 @@ sudo usermod -aG docker ubuntu
 
 # Download rke K8s installer
 
+echo "Installing rke"
 curl -L $(curl -s https://api.github.com/repos/rancher/rke/releases/latest | jq -r ".assets[] | select(.name | test(\"rke_linux-amd64\")) | .browser_download_url") --output rke_linux-amd 
+
 
 # Install rke K8s installer
 sudo chmod 755 rke_linux-amd
