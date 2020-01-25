@@ -105,6 +105,6 @@ module "internal_rancher_sg" {
     description = "Security group for http into private subnet"
     vpc_id = module.vpc.vpc_id
 
-    ingress_cidr_blocks = ["10.42.0.0/16"]
+    ingress_cidr_blocks = ["10.42.0.0/15"]
     ingress_rules = ["all-all"]
 }
