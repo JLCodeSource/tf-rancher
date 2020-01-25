@@ -59,6 +59,18 @@ module "ssh_sg" {
     ingress_rules = ["ssh-tcp"]
 }
 
+/* module "kubernets_management_sg" {
+    source  = "terraform-aws-modules/security-group/aws"
+    version = "3.4.0"
+
+    name = "kubernets_management_sg"
+    description = "Security group for k8s into public subnet"
+    vpc_id = module.vpc.vpc_id
+
+    ingress_cidr_blocks = ["${var.mgmt-ip}"]
+    ingress_rules = ["ssh-tcp"] #6443
+} */
+
 module "inbound_https_sg" {
     source  = "terraform-aws-modules/security-group/aws"
     version = "3.4.0"
