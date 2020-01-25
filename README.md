@@ -35,7 +35,9 @@ Private nodes update, install a couple of apps, including docker and then instal
 
 On first login to a public subnet node; first action is to scp terraform-key to .ssh/id_rsa. Next run ./copy_keys.sh.
 
-Connect into one of the private nodes create "rancher-cluster.yml" file and run rke up -config ./rancher-cluster.yml.
+Connect into one of the private nodes and run:
+
+/home/ubuntu/cluster_install.sh
 
 
 
