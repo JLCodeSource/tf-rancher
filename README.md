@@ -39,5 +39,11 @@ Connect into one of the private nodes and run:
 
 /home/ubuntu/cluster_install.sh
 
+## Post Setup
 
+Copy:
+kube_config_rancher-cluster.yml  
+rancher-cluster.rkestate  
+rancher-cluster.yml
 
+To a safe place.
