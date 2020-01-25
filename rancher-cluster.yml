@@ -4,16 +4,19 @@ nodes:
     user: ubuntu
     role: [controlplane, worker, etcd]
     ssh_key_path: /home/ubuntu/.ssh/id_rsa
+    hostname_override: rancher01.rancher.tf.com
   - address: 172.21.16.100
     internal_address: 172.21.16.100
     user: ubuntu
     role: [controlplane, worker, etcd]
     ssh_key_path: /home/ubuntu/.ssh/id_rsa
+    hostname_override: rancher02.rancher.tf.com
   - address: 172.21.24.100
     internal_address: 172.21.24.100
     user: ubuntu
     role: [controlplane, worker, etcd]
     ssh_key_path: /home/ubuntu/.ssh/id_rsa
+    hostname_override: rancher03.rancher.tf.com
 
 cluster_name: tf-rancher
 prefix_path: /opt/rke

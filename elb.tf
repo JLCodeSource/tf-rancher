@@ -6,7 +6,7 @@ module "elb" {
   load_balancer_type = "network"
   #security_groups = ["${module.internal_private_sg.this_security_group_id}"]
   vpc_id = module.vpc.vpc_id
-  subnets = module.vpc.private_subnets
+  subnets = module.vpc.public_subnets
   
   http_tcp_listeners = [
       {
@@ -14,11 +14,11 @@ module "elb" {
           protocol              = "TCP"
           target_group_index    = 0
       },
-      {
+       {
           port                  = 80
           protocol              = "TCP"
           target_group_index    = 1
-      }
+      },
   ]
 
   target_groups = [
@@ -38,7 +38,7 @@ module "elb" {
               success_codes         = "200-399"
           }
       },
-      { 
+       { 
           name_prefix               = "r80t-"
           backend_protocol          = "TCP"
           backend_port              = 80
@@ -53,7 +53,8 @@ module "elb" {
               interval              = 10
               success_codes         = "200-399"
           }
-      },
+      }
   ]
 
 }
+
