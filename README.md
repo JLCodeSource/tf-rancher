@@ -47,3 +47,6 @@ rancher-cluster.rkestate
 rancher-cluster.yml
 
 To a safe place.
+
+Run rancher-setup.sh and rancher-setup-part-2.sh.
+Don't forget to update your hosts file!
