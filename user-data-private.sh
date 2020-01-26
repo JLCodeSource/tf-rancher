@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Variable
+export SETUP_DOMAIN_NAME="rancher.tf-support.com"
+
 # Update
 # NB - needed to handle grub issue
 sudo apt-get update
@@ -30,19 +33,19 @@ echo "    internal_address: 172.21.8.100" >> /home/ubuntu/rancher-cluster.yml
 echo "    user: ubuntu" >> /home/ubuntu/rancher-cluster.yml
 echo "    role: [controlplane, worker, etcd]" >> /home/ubuntu/rancher-cluster.yml
 echo "    ssh_key_path: /home/ubuntu/.ssh/id_rsa" >> /home/ubuntu/rancher-cluster.yml
-echo "    hostname_override: rancher01.${var.domain_name}" >> /home/ubuntu/rancher-cluster.yml
+echo "    hostname_override: rancher01.$SETUP_DOMAIN_NAME" >> /home/ubuntu/rancher-cluster.yml
 echo "  - address: 172.21.16.100" >> /home/ubuntu/rancher-cluster.yml
 echo "    internal_address: 172.21.16.100" >> /home/ubuntu/rancher-cluster.yml
 echo "    user: ubuntu" >> /home/ubuntu/rancher-cluster.yml
 echo "    role: [controlplane, worker, etcd]" >> /home/ubuntu/rancher-cluster.yml
 echo "    ssh_key_path: /home/ubuntu/.ssh/id_rsa" >> /home/ubuntu/rancher-cluster.yml
-echo "    hostname_override: rancher02.${var.domain_name}" >> /home/ubuntu/rancher-cluster.yml
+echo "    hostname_override: rancher02.$SETUP_DOMAIN_NAME" >> /home/ubuntu/rancher-cluster.yml
 echo "  - address: 172.21.24.100" >> /home/ubuntu/rancher-cluster.yml
 echo "    internal_address: 172.21.24.100" >> /home/ubuntu/rancher-cluster.yml
 echo "    user: ubuntu" >> /home/ubuntu/rancher-cluster.yml
 echo "    role: [controlplane, worker, etcd]" >> /home/ubuntu/rancher-cluster.yml
 echo "    ssh_key_path: /home/ubuntu/.ssh/id_rsa" >> /home/ubuntu/rancher-cluster.yml
-echo "    hostname_override: rancher03.${var.domain_name}" >> /home/ubuntu/rancher-cluster.yml
+echo "    hostname_override: rancher03.$SETUP_DOMAIN_NAME" >> /home/ubuntu/rancher-cluster.yml
 echo "" >> /home/ubuntu/rancher-cluster.yml
 echo "cluster_name: tf-rancher" >> /home/ubuntu/rancher-cluster.yml
 echo "prefix_path: /opt/rke" >> /home/ubuntu/rancher-cluster.yml
@@ -61,7 +64,8 @@ echo "    use-forwarded-headers: \"true\"" >> /home/ubuntu/rancher-cluster.yml
 # Create rke install script
 echo "rke up -config /home/ubuntu/rancher-cluster.yml" > /home/ubuntu/cluster_install.sh
 echo "sudo snap install kubectl --classic" >> /home/ubuntu/cluster_install.sh
-echo "export KUBECONFIG=$(pwd)/kube_config_rancher-cluster.yml" >> /home/ubuntu/cluster_install.sh
+echo "export KUBECONFIG=/home/ubuntu/kube_config_rancher-cluster.yml" >> /home/ubuntu/cluster_install.sh
+echo "cp /home/ubuntu/kube_config_rancher-cluster.yml /home/ubuntu/.kube/config"
 echo "sudo snap install helm --classic" >> /home/ubuntu/cluster_install.sh
 chmod 755 /home/ubuntu/cluster_install.sh
 
