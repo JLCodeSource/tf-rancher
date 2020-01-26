@@ -2,7 +2,7 @@ module "route53" {
   source  = "Aplyca/route53/aws"
   version = "0.2.0"
  
-  domain = "rancher.tf.com"
+  domain = "${var.domain_name}"
 
   alias = {
     names = [

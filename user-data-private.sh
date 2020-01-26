@@ -30,19 +30,19 @@ echo "    internal_address: 172.21.8.100" >> /home/ubuntu/rancher-cluster.yml
 echo "    user: ubuntu" >> /home/ubuntu/rancher-cluster.yml
 echo "    role: [controlplane, worker, etcd]" >> /home/ubuntu/rancher-cluster.yml
 echo "    ssh_key_path: /home/ubuntu/.ssh/id_rsa" >> /home/ubuntu/rancher-cluster.yml
-echo "    hostname_override: rancher01.rancher.tf.com" >> /home/ubuntu/rancher-cluster.yml
+echo "    hostname_override: rancher01.${var.domain_name}" >> /home/ubuntu/rancher-cluster.yml
 echo "  - address: 172.21.16.100" >> /home/ubuntu/rancher-cluster.yml
 echo "    internal_address: 172.21.16.100" >> /home/ubuntu/rancher-cluster.yml
 echo "    user: ubuntu" >> /home/ubuntu/rancher-cluster.yml
 echo "    role: [controlplane, worker, etcd]" >> /home/ubuntu/rancher-cluster.yml
 echo "    ssh_key_path: /home/ubuntu/.ssh/id_rsa" >> /home/ubuntu/rancher-cluster.yml
-echo "    hostname_override: rancher02.rancher.tf.com" >> /home/ubuntu/rancher-cluster.yml
+echo "    hostname_override: rancher02.${var.domain_name}" >> /home/ubuntu/rancher-cluster.yml
 echo "  - address: 172.21.24.100" >> /home/ubuntu/rancher-cluster.yml
 echo "    internal_address: 172.21.24.100" >> /home/ubuntu/rancher-cluster.yml
 echo "    user: ubuntu" >> /home/ubuntu/rancher-cluster.yml
 echo "    role: [controlplane, worker, etcd]" >> /home/ubuntu/rancher-cluster.yml
 echo "    ssh_key_path: /home/ubuntu/.ssh/id_rsa" >> /home/ubuntu/rancher-cluster.yml
-echo "    hostname_override: rancher03.rancher.tf.com" >> /home/ubuntu/rancher-cluster.yml
+echo "    hostname_override: rancher03.${var.domain_name}" >> /home/ubuntu/rancher-cluster.yml
 echo "" >> /home/ubuntu/rancher-cluster.yml
 echo "cluster_name: tf-rancher" >> /home/ubuntu/rancher-cluster.yml
 echo "prefix_path: /opt/rke" >> /home/ubuntu/rancher-cluster.yml

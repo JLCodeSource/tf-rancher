@@ -2,6 +2,10 @@ variable "region" {
   default = "us-west-2"
 }
 
+variable "domain_name" {
+  default = "rancher.tf-support.com"
+}
+
 data "aws_availability_zones" "available" {
 }
 
