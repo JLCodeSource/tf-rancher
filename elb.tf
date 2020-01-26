@@ -41,7 +41,7 @@ module "elb" {
        { 
           name_prefix               = "r80t-"
           backend_protocol          = "TCP"
-          backend_port              = 443
+          backend_port              = 80
           target_type               = "instance"
           health_check  = {
               enabled               = true

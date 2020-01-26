@@ -3,6 +3,7 @@
 # Variable
 export SETUP_DOMAIN_NAME="rancher.tf-support.com"
 
+
 # Update
 # NB - needed to handle grub issue
 sudo apt-get update

@@ -3,7 +3,7 @@ variable "region" {
 }
 
 variable "domain_name" {
-  default = "rancher.tf-support.com"
+  default = "tf-support.com"
 }
 
 data "aws_availability_zones" "available" {
