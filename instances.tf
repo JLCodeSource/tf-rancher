@@ -1,11 +1,3 @@
-/* data "template_file" "public_init" {
-    template = file("user-data-public.sh.tpl")
-    vars = {
-        rancher_public_key = var.rancher_public_key
-        rancher_private_key = var.rancher_private_key
-    }
-} */
-
 resource "local_file" "user_data_public" {
     count = length(var.public_subnets)
     content = templatefile("user-data-public.sh.tpl", {
@@ -29,21 +21,11 @@ resource "aws_instance" "rancher_public" {
         "${module.outbound_internet_sg.this_security_group_id}",
         ]
     key_name = var.frontend_key_name
-    #user_data = data.template_file.public_init.rendered
     user_data = file("user-data-public-${var.node_name}-${count.index}.sh")
     tags = {
         Name = "rancher-bastion-public-${count.index}"
     }
 }
-
-/*data "template_file" "private_init" {
-    template = file("user-data-private.sh.tpl")
-    vars = {
-        private_key = var.rancher_private_key
-        public_key = var.rancher_public_key
-        domain_name = var.domain_name
-    }
-}*/
 
 resource "local_file" "user_data_private" {
     count = length(var.private_subnets)
@@ -73,7 +55,6 @@ resource "aws_instance" "rancher_private" {
     ]
 
     key_name = var.backend_key_name
-    #user_data = data.template_file.private_init.rendered
     user_data = file("user-data-private-${var.node_name}-${count.index}.sh")
     tags = {
         Name = "rancher-private-${count.index}"
