@@ -3,7 +3,11 @@ variable "region" {
 }
 
 variable "domain_name" {
-  default = "tf-support.com"
+  default = "rancher.tf-support.com"
+}
+
+variable "node_name" {
+  default = "rancher"
 }
 
 data "aws_availability_zones" "available" {
@@ -37,9 +41,24 @@ variable "vpc_name" {
   default = "tf-rancher"
 }
 
-variable "key_name" {
-    default = "terraform-key"
+variable "frontend_key_name" {
+    default = "terraform-frontend-key"
 }
+
+variable "backend_key_name" {
+    default = "terraform-backend-key"
+}
+
+variable "rancher_public_key" {
+}
+
+variable "rancher_private_key" {
+}
+
+/* variable "rancher_keyfile" {
+  default = {public_key_filename = "id_rsa.pub", 
+             private_key_filename = "id_rsa"}
+} */
 
 variable "ami" {
     default  = "ami-06d51e91cea0dac8d"

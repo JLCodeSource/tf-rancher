@@ -2,3 +2,6 @@
 /terraform.tfstate
 /terraform.tfstate.backup
 /.terraform
+/.prod-env
+/user-data-private-*
+/user-data-public-*
