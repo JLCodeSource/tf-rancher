@@ -38,7 +38,7 @@ echo "    user: ubuntu" >> /home/ubuntu/rancher-cluster.yml
 echo "    role: [controlplane, worker, etcd]" >> /home/ubuntu/rancher-cluster.yml
 echo "    ssh_key_path: /home/ubuntu/.ssh/id_rsa" >> /home/ubuntu/rancher-cluster.yml
 echo "    hostname_override: rancher02.${domain_name}" >> /home/ubuntu/rancher-cluster.yml
-echo "  - address: 172.21.24..100" >> /home/ubuntu/rancher-cluster.yml
+echo "  - address: 172.21.24.100" >> /home/ubuntu/rancher-cluster.yml
 echo "    internal_address: 172.21.24.100" >> /home/ubuntu/rancher-cluster.yml
 echo "    user: ubuntu" >> /home/ubuntu/rancher-cluster.yml
 echo "    role: [controlplane, worker, etcd]" >> /home/ubuntu/rancher-cluster.yml
