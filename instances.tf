@@ -59,6 +59,11 @@ resource "aws_instance" "rancher_private" {
     tags = {
         Name = "rancher-private-${count.index}"
     }
+
+    root_block_device {
+        volume_type = "gp2"
+        volume_size = 50
+    }
 }
 
 output "rancher-public-instance-ids" {
