@@ -32,7 +32,7 @@ resource "local_file" "user_data_private" {
     content = templatefile("user-data-private.sh.tpl", {
         private_key = var.rancher_private_key
         public_key = var.rancher_public_key
-        domain_name = var.domain_name
+        domain_name = "${module.random.name}-${var.domain_name}"
         },)
     filename = "user-data-private-${var.node_name}-${count.index}.sh"
 }
@@ -89,3 +89,4 @@ output "rancher-private-instance-internal-ips" {
 output "rancher-private-instance-external-ips" {
     value = aws_instance.rancher_private.*.public_ip
 }
+

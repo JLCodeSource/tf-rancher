@@ -22,7 +22,7 @@ module "route53-alias" {
   source  = "cloudposse/route53-alias/aws"
   version = "0.4.0"
   # insert the 3 required variables here
-  aliases         = ["rancher.tf-support.com",]
+  aliases         = ["${module.random.name}-${var.domain_name}",]
   enabled         = true
   parent_zone_id  = "ZONEID"
   target_dns_name = "${module.elb.this_lb_dns_name}"
