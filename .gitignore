@@ -5,3 +5,4 @@
 /.prod-env
 /user-data-private-*
 /user-data-public-*
+/kube_config_rancher-*
