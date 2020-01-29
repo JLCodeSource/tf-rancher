@@ -73,3 +73,19 @@ output "rancher-public-instance-ids" {
 output "rancher-private-instance-ids" {
     value = aws_instance.rancher_private.*.id
 }
+
+output "rancher-public-instance-external-ips" {
+    value = aws_instance.rancher_public.*.public_ip
+}
+
+output "rancher-public-instance-internal-ips" {
+    value = aws_instance.rancher_public.*.private_ip
+}
+
+output "rancher-private-instance-internal-ips" {
+    value = aws_instance.rancher_private.*.private_ip
+}
+
+output "rancher-private-instance-external-ips" {
+    value = aws_instance.rancher_private.*.public_ip
+}
