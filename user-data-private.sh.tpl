@@ -1,6 +1,5 @@
 #!/bin/bash
 
-#cloud-config
 # Update
 # NB - needed to handle grub issue
 sudo apt-get update
@@ -10,20 +9,20 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get -y --force-yes upgrade
 sudo apt-get -y --force-yes install docker.io jq ntp
 
 # Add Docker permissions
-sudo groupadd docker
+#sudo groupadd docker
 sudo usermod -aG docker ubuntu
 
 # Download rke K8s installer
 
-echo "Installing rke"
+echo "*** Installing rke k8s installer"
 curl -L $(curl -s https://api.github.com/repos/rancher/rke/releases/latest | jq -r ".assets[] | select(.name | test(\"rke_linux-amd64\")) | .browser_download_url") --output rke_linux-amd 
-
 
 # Install rke K8s installer
 sudo chmod 755 rke_linux-amd
 sudo chown root:root rke_linux-amd
 sudo mv rke_linux-amd /usr/local/bin/rke
 
+echo "*** Creating rancher-cluster.yml"
 # Create rancher-cluster.yml
 echo "nodes:" > /home/ubuntu/rancher-cluster.yml
 echo "  - address: 172.21.8.100" >> /home/ubuntu/rancher-cluster.yml
@@ -58,6 +57,9 @@ echo "ingress:" >> /home/ubuntu/rancher-cluster.yml
 echo "  provider:" nginx >> /home/ubuntu/rancher-cluster.yml
 echo "  options:" >> /home/ubuntu/rancher-cluster.yml
 echo "    use-forwarded-headers: \"true\"" >> /home/ubuntu/rancher-cluster.yml
+
+
+echo "*** Creating rke k8s install script"
 # Create rke install script
 ## Install rke
 echo "echo '*** Installing rke' 2>&1 | tee -a ~/output.log" > /home/ubuntu/cluster_install.sh
@@ -123,9 +125,12 @@ echo "echo '*** Rancher Installed' 2>&1 | tee -a ~/output.log" >> /home/ubuntu/c
 
 chmod 755 /home/ubuntu/cluster_install.sh
 
+echo "*** Copy pub-priv keys"
 echo "${public_key}" > /home/ubuntu/.ssh/id_rsa.pub
 echo "${private_key}" > /home/ubuntu/.ssh/id_rsa
 
 # Restart ready for install
 
+echo "*** Rebooting"
 sudo reboot
+echo "*** Ready for install"

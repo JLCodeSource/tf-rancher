@@ -59,17 +59,38 @@ module "ssh_sg" {
     ingress_rules = ["ssh-tcp"]
 }
 
-/* module "kubernets_management_sg" {
+/*module "mgmt_kubectl_sg" {
     source  = "terraform-aws-modules/security-group/aws"
     version = "3.4.0"
 
-    name = "kubernets_management_sg"
-    description = "Security group for k8s into public subnet"
+    name = "kubectl_sg"
+    description = "Security group for kubectl into private subnet"
     vpc_id = module.vpc.vpc_id
 
-    ingress_cidr_blocks = ["${var.mgmt-ip}"]
-    ingress_rules = ["ssh-tcp"] #6443
-} */
+    ingress_with_cidr_blocks = [
+      {
+        from_port   = 6443
+        to_port     = 6443
+        protocol    = "tcp"
+        description = "kubernetes ports"
+        cidr_blocks = "${var.mgmt-ip}"
+      },
+      ]
+    
+}*/
+
+module "inbound_http_s_sg" {
+    source  = "terraform-aws-modules/security-group/aws"
+    version = "3.4.0"
+
+    name = "http_s_sg"
+    description = "Security group for http/s into private subnet"
+    vpc_id = module.vpc.vpc_id
+
+    ingress_cidr_blocks = ["0.0.0.0/0"]
+    ingress_rules = ["http-80-tcp", "https-443-tcp"]
+
+}
 
 module "inbound_https_sg" {
     source  = "terraform-aws-modules/security-group/aws"
