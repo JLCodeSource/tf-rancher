@@ -62,8 +62,6 @@ echo "    use-forwarded-headers: \"true\"" >> /home/ubuntu/rancher-cluster.yml
 ## Install rke
 echo "echo '*** Installing rke' 2>&1 | tee -a ~/output.log" > /home/ubuntu/cluster_install.sh
 echo "rke up -config /home/ubuntu/rancher-cluster.yml 2>&1 | tee -a ~/output.log" >> /home/ubuntu/cluster_install.sh
-<<<<<<< HEAD
-=======
 ## Install kubectl
 echo "echo '*** Installing kubectl' 2>&1 | tee -a ~/output.log" >> /home/ubuntu/cluster_install.sh
 echo "sudo snap install kubectl --classic 2>&1 | tee -a ~/output.log" >> /home/ubuntu/cluster_install.sh
@@ -122,7 +120,6 @@ echo "kubectl -n cattle-system rollout status deploy/rancher 2>&1 | tee -a ~/out
 echo "echo '*** Checking kube setup' 2>&1 | tee -a ~/output.log" >> /home/ubuntu/cluster_install.sh
 echo "kubectl get pods --all-namespaces -o wide 2>&1 | tee -a ~/output.log" >> /home/ubuntu/cluster_install.sh
 echo "echo '*** Rancher Installed' 2>&1 | tee -a ~/output.log" >> /home/ubuntu/cluster_install.sh
->>>>>>> bf0629f... Updated installer
 
 chmod 755 /home/ubuntu/cluster_install.sh
 
